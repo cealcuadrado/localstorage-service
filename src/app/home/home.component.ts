@@ -1,3 +1,5 @@
+import { LocalStorageService } from './../shared/services/local-storage.service';
+import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private home: HomeService,
+    private localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit(): void {
+    this.home.getPosts().subscribe(data => {
+      console.log(data);
+      this.localStorageService.set('data', data);
+    });
   }
-
 }

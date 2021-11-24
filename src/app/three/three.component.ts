@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThreeComponent implements OnInit {
 
-  constructor() { }
+  data: any;
+
+  constructor(
+    private localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit(): void {
+    this.data = this.localStorageService.get('data');
   }
 
 }
